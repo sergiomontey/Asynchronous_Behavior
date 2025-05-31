@@ -23,6 +23,8 @@ a:hover {
 }
 
 body {
+  background: #f5f7fa;
+  padding: 0;
   margin: 0;
   display: flex;
   place-items: center;
@@ -53,7 +55,26 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+.user-profile {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  background: #fafcff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 40px auto;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
