@@ -149,7 +149,7 @@ This project uses the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) f
 ## 📦 Installation & Run
 
 ```bash
-git clone https://github.com/your-username/react-async-fetch-demo.git
+git clone https://github.com/sergiomontey/Asynchronous_Behavior.git
 cd react-async-fetch-demo
 npm install
 npm start
