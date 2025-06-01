@@ -150,6 +150,9 @@ function App() {
   margin: 40px auto;
   animation: spin 1s linear infinite;
 }
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 ```
 
 ---
