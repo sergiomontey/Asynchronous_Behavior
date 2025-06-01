@@ -141,6 +141,14 @@ function App() {
 ## 🎨 Basic Styling (with `style jsx`)
 
 ```css
+.user-profile {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  background: #fafcff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #007bff;
