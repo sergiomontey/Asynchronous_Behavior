@@ -114,9 +114,22 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <div style={{ maxWidth: 400, margin: "40px auto", fontFamily: "sans-serif" }}>
       <h1>Asynchronous Behavior in React UI</h1>
-      <button onClick={handleNextUser}>Load Next User ({currentUserId})</button>
+      <button
+        onClick={handleNextUser}
+        style={{
+          marginBottom: 16,
+          padding: "8px 12px",
+          borderRadius: 5,
+          background: "#007bff",
+          color: "#fff",
+          border: "none"
+        }}
+      >
+        Load Next User (Current: {currentUserId})
+      </button>
+      {/* Renders the profile of the current user */}
       <UserProfile userId={currentUserId} />
     </div>
   );
