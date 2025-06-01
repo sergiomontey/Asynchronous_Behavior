@@ -147,6 +147,7 @@ function App() {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  margin: 40px auto;
   animation: spin 1s linear infinite;
 }
 ```
