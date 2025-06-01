@@ -75,17 +75,27 @@ function UserProfile({ userId }) {
     `https://jsonplaceholder.typicode.com/users/${userId}`
   );
 
-  if (loading) return <p>Loading user data...</p>;
-  if (error) return <p>Error loading user: {error.message}</p>;
+  if (loading) return <div className="spinner"></div>;
+  if (error) return <p style={{ color: "red" }}>Error loading user: {error.message}</p>;
+
   if (!user) return null;
 
   return (
     <div className="user-profile">
       <h2>{user.name}</h2>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-      <p>Website: <a href={`http://${user.website}`}>{user.website}</a></p>
-      <p>Company: {user.company.name}</p>
+      <p><strong>Email:</strong> {user.email}</p>
+      <p><strong>Phone:</strong> {user.phone}</p>
+      <p>
+        <strong>Website:</strong>{" "}
+        <a
+          href={`http://${user.website}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {user.website}
+        </a>
+      </p>
+      <p><strong>Company:</strong> {user.company.name}</p>
     </div>
   );
 }
