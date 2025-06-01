@@ -52,8 +52,8 @@ Ensure Node.js and npm/yarn are installed.
 
 **Using CRA:**
 ```bash
-npx create-react-app my-async-demo
-cd my-async-demo
+npx create-react-app react-async-fetch-demo
+cd react-async-fetch-demo
 ```
 
 **Using Vite:**
