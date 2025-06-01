@@ -32,6 +32,7 @@ function useFetchData(url) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+   let isMounted = true;
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -40,16 +41,16 @@ function useFetchData(url) {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const result = await response.json();
-        setData(result);
+        if(isMounted) setData(result);
       } catch (err) {
-        console.error("Fetch error:", err);
-        setError(err);
+        if (isMounted) setError(err);        
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchData();
+    return () => { isMounted = false; };
   }, [url]);
 
   return { data, loading, error };
@@ -74,17 +75,27 @@ function UserProfile({ userId }) {
     `https://jsonplaceholder.typicode.com/users/${userId}`
   );
 
-  if (loading) return <p>Loading user data...</p>;
-  if (error) return <p>Error loading user: {error.message}</p>;
+  if (loading) return <div className="spinner"></div>;
+  if (error) return <p style={{ color: "red" }}>Error loading user: {error.message}</p>;
+
   if (!user) return null;
 
   return (
     <div className="user-profile">
       <h2>{user.name}</h2>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
-      <p>Website: <a href={`http://${user.website}`}>{user.website}</a></p>
-      <p>Company: {user.company.name}</p>
+      <p><strong>Email:</strong> {user.email}</p>
+      <p><strong>Phone:</strong> {user.phone}</p>
+      <p>
+        <strong>Website:</strong>{" "}
+        <a
+          href={`http://${user.website}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {user.website}
+        </a>
+      </p>
+      <p><strong>Company:</strong> {user.company.name}</p>
     </div>
   );
 }
@@ -149,7 +160,7 @@ This project uses the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) f
 ## 📦 Installation & Run
 
 ```bash
-git clone https://github.com/your-username/react-async-fetch-demo.git
+git clone https://github.com/sergiomontey/Asynchronous_Behavior.git
 cd react-async-fetch-demo
 npm install
 npm start
