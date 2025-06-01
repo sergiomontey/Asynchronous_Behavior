@@ -32,6 +32,7 @@ function useFetchData(url) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+   let isMounted = true;
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -40,16 +41,16 @@ function useFetchData(url) {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const result = await response.json();
-        setData(result);
+        if(isMounted) setData(result);
       } catch (err) {
-        console.error("Fetch error:", err);
-        setError(err);
+        if (isMounted) setError(err);        
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
 
     fetchData();
+    return () => { isMounted = false; };
   }, [url]);
 
   return { data, loading, error };
